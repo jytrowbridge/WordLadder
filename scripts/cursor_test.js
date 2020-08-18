@@ -9,4 +9,4 @@ setInterval(() => {
     cursor.style.opacity = 1;
   }
   cursorOn = !cursorOn;
-}, 500)
+}, 500);

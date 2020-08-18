@@ -18,14 +18,14 @@ function getRndArrayElt(arr) {
   return arr[getRndInteger(0, arr.length)];
 }
 
-function getRndWord(maxLen=-1) {
+function getRndWord(minLen=0, maxLen=1000) {
   // pull random word from dictionary
-  let words;
-  if (maxLen != -1) {
-    words = Object.keys(scrabDic).filter(word => word.length <= maxLen);
-  } else {
-    words = Object.keys(scrabDic);
-  }
+  const words = Object.keys(scrabDic).filter(word => word.length >= minLen && word.length <= maxLen);
+  // if (maxLen != -1) {
+  //   words = Object.keys(scrabDic).filter(word => word.length <= maxLen);
+  // } else {
+  //   words = Object.keys(scrabDic);
+  // }
   return words[getRndInteger(0, words.length)];
 }
 
@@ -55,24 +55,27 @@ function getNextWords(word) {
 }
 
 function createWordLadder(steps=10) {
-  const startWord = getRndWord(maxLen=5);
-  let ladder = [startWord];
+  const startWord = getRndWord(minLen=4, maxLen=5);
+  let nextPoss = [startWord];
   let seen = {};
+  let ladder = [];
 
   for(var i = 0; i < steps; i++) {
-    if (ladder.length == 0) return;
+    if (nextPoss.length == 0) return ladder;
 
-    let word = getRndArrayElt(ladder);
+    let word = getRndArrayElt(nextPoss);
     if (word in seen) {
       i--;
-      ladder = removeItem(ladder, word);
+      nextPoss = removeItem(nextPoss, word);
       continue;
     } else {
       seen[word] = 1;
-      console.log(word);
-      ladder = getNextWords(word);
+      ladder.push(word);
+      nextPoss = getNextWords(word);
     }
   }
+
+  return ladder;
 }
 
 function isConnected(start, target) {
