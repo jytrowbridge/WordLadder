@@ -6,8 +6,8 @@ let inputDiv = document.querySelector('#input-word');
 document.addEventListener('keyup', e => processKey(e));
 
 function processKey(e) {
-  const code = e.key.charCodeAt();
-  if (code >= 97 && code <= 122) {
-    
+  const code = parseInt(e.keyCode);
+  if (code >= 65 && code <= 90) {
+    inputDiv.textContent += e.key.toUpperCase();
   }
 }

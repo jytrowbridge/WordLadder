@@ -14,5 +14,13 @@ body {
 }
 
 #cursor {
-  color: gray;
+  background: gray;
+  width: 15px;
+  height: 4 rem;
+  margin-left: 5px;
+}
+
+#input-word-wrapper {
+  display: flex;
+  justify-content: center;
 }
