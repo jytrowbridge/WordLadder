@@ -14,8 +14,9 @@ body {
 }
 
 #cursor {
-  background: gray;
-  width: 15px;
+  color: transparent;
+  background: black;
+  width: 7px;
   height: 4 rem;
   margin-left: 5px;
 }
